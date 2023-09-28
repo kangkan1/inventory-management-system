@@ -19,3 +19,16 @@ app.listen(port, function(err){
     }
     console.log(`Server is running in port: ${port}`)
 })
+
+
+/*
+CREATE TABLE product (
+	  id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name text(512) NOT NULL,
+    sku text(1028),
+    quantity INTEGER NOT NULL,
+    price DECIMAL(10,3) NOT NULL,
+    created_by INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+*/
