@@ -29,6 +29,11 @@ CREATE TABLE product (
     quantity INTEGER NOT NULL,
     price DECIMAL(10,3) NOT NULL,
     created_by INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    currency text(10)
+    );
+    insert into product (id, name, sku, quantity, price, currency) values (1, "Pool Table (1.4m*2m Small)","PTSM001",7, 16999,"INR" );
+    insert into product (id, name, sku, quantity, price, currency) values (2, "Pool Table (1.7m*2.5m Medium)","PTMM002",5, 18999,"INR" );
+    insert into product (id, name, sku, quantity, price, currency) values (3, "Pool Table (2.1m*2.9m Large)","PTLL003",4, 21999,"INR" );
+
 */

@@ -3,7 +3,7 @@
       max-width: 600px;
       margin: 5px auto;
       box-sizing: border-box;
-      z-index: 2;
+      z-index: 10;
       opacity: 1;
 
   }
@@ -44,6 +44,7 @@
       max-width: 600px;
       overflow-y: auto;
       box-sizing: border-box;
+      z-index: 10;
 
   }
   .search-input.active .autocom-box{
@@ -52,6 +53,8 @@
       opacity: 1;
       pointer-events: auto;
       box-sizing: border-box;
+      z-index: 10;
+     
 
 
   }
@@ -66,6 +69,8 @@
       box-sizing: border-box;
       background: #fcfbfb;
       text-overflow: ellipsis;
+     
+      
   }
   .search-input.active .autocom-box li{
       display: block;
@@ -86,17 +91,20 @@
       border-radius: 3px;
       font-family: 'Poppins', sans-serif;
       box-sizing: border-box;
+      
   }
   .search-input.active .autocom-box a{
       display: block;
       font-family: 'Poppins', sans-serif;
       box-sizing: border-box;
       color: black;
+     
   }
   .autocom-box a:hover{
       background: #efefef;
       box-sizing: border-box;
       color: black;
+      
   }
   .search-input .icon-blue{
       position: absolute;
@@ -199,11 +207,11 @@
           showSuggestions(emptyArray);
           return
       }else {
-          emptyArray.push("<a href=\"#\">Searching.....</a>");
+          emptyArray.push("<li><a href=\"#\">Searching.....</a></li>");
           searchWrapper.classList.add("active"); //show autocomplete box
           showSuggestions(emptyArray);
       }
-      let csrf_name = '_crrf';
+      let csrf_name = '_csrf';
       let csrf_value = ``;
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", url+"?val="+userData, true);
@@ -222,7 +230,7 @@
               let emptyArray = [];
               if(result.length==0){
                   console.log("no result found");
-                  emptyArray.push('<a href=\"#\">No result found</a>')
+                  emptyArray.push('<li><a href=\"#\">No result found</a></li>')
                   showSuggestions(emptyArray);
               }else {
                   for(let i=0;i<result.length;i++){
@@ -291,7 +299,7 @@
   }
 
   function onClickCancel(){
-      console.log("Cancel clicked")
+    //   console.log("Cancel clicked")
       inputBox.value=""
       let emptyArray = [];
       showSuggestions(emptyArray)
@@ -300,6 +308,7 @@
           linkTag.setAttribute("href", webLink);
           // linkTag.click();
       }
+      searchWrapper.classList.remove("active");
 
   }
 
