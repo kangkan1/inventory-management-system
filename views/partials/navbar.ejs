@@ -207,7 +207,7 @@
           showSuggestions(emptyArray);
           return
       }else {
-          emptyArray.push("<a href=\"#\">Searching.....</a>");
+          emptyArray.push("<li><a href=\"#\">Searching.....</a></li>");
           searchWrapper.classList.add("active"); //show autocomplete box
           showSuggestions(emptyArray);
       }
@@ -230,7 +230,7 @@
               let emptyArray = [];
               if(result.length==0){
                   console.log("no result found");
-                  emptyArray.push('<a href=\"#\">No result found</a>')
+                  emptyArray.push('<li><a href=\"#\">No result found</a></li>')
                   showSuggestions(emptyArray);
               }else {
                   for(let i=0;i<result.length;i++){

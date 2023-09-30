@@ -13,7 +13,7 @@ module.exports.search = function(req, res){
     const searchTerm = req.query.val;
     console.log(searchTerm)
     db.serialize(() => {
-        db.all(`SELECT id, name, sku, price, currency FROM product where name like "%${searchTerm}%"`, (err, rows) => {
+        db.all(`SELECT id, name, sku, price, currency FROM product where name like "%${searchTerm}%" or sku like "%${searchTerm}%"`, (err, rows) => {
           if (err) {
             console.log(err)
             throw err;
@@ -26,7 +26,7 @@ module.exports.search = function(req, res){
             for(let i=0;i<rows.length;i++){
                 out.push({
                     'url':"#",
-                    'text':rows[i].name+", "+rows[i].currency+""+rows[i].price
+                    'text':rows[i].name+", "+rows[i].currency+" "+rows[i].price
                 })
             }
           }
