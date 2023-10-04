@@ -36,4 +36,9 @@ CREATE TABLE product (
     insert into product (id, name, sku, quantity, price, currency) values (2, "Pool Table (1.7m*2.5m Medium)","PTMM002",5, 18999,"INR" );
     insert into product (id, name, sku, quantity, price, currency) values (3, "Pool Table (2.1m*2.9m Large)","PTLL003",4, 21999,"INR" );
 
+    alter table product add column category text(50);
+
+    insert into product (id, name, sku, quantity, price, currency, category) values (4, "Kitchen Stand, 5 layer kitchen stand (Steel) for Home","RCK001",7, 999,"INR", "Rack");
+
+    update product set category = "Pool Table";
 */
