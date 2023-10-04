@@ -152,8 +152,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav" style="font-size: 1.5rem;">
-          <a class="nav-link text-white" aria-current="page" href="#" >Home</a>
-          <a class="nav-link text-white" href="#">About Us</a>
+          <a class="nav-link text-white" aria-current="page" href="../" >Home</a>
+          <a class="nav-link text-white d-none" href="#">About Us</a>
 
         </div>
       </div>
@@ -222,14 +222,14 @@
       xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
               let res = JSON.parse(this.responseText)
-              console.log(res);
+            //   console.log(res);
               // if(res.status === 'success')
               //     console.log(res)
               let result = res.results
               let link = ""
               let emptyArray = [];
               if(result.length==0){
-                  console.log("no result found");
+                //   console.log("no result found");
                   emptyArray.push('<li><a href=\"#\">No result found</a></li>')
                   showSuggestions(emptyArray);
               }else {
@@ -240,9 +240,9 @@
                       // link += '<li onclick="select(\"'+result[i]['url']+'\")">'+result[i]['text']+'</li>'
                   }
 
-                  console.log("some result found");
-                  console.log("empty array:");
-                  console.log(emptyArray)
+                //   console.log("some result found");
+                //   console.log("empty array:");
+                //   console.log(emptyArray)
                   showSuggestions(emptyArray);
               }
 
@@ -289,9 +289,15 @@
       // console.log(text)
       text = text.trim();
       inputBox.value = text
+    //   console.log(element)
+      window.open(element, "_blank");
       icon.onclick = ()=>{
           // webLink = `https://www.google.com/search?q=${selectData}`;
+        //   window.location.href = webLink;
+          
           webLink = element;
+          
+        //   window.open(webLink, "_blank");
           linkTag.setAttribute("href", webLink);
           linkTag.click();
       }

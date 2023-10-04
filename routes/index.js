@@ -8,6 +8,7 @@ console.log('router loaded')
 
 router.get('/', homeController.home)
 router.post('/search', homeController.search)
+router.get('/product', homeController.product)
 router.use('/users', require('./users'))
 
 module.exports = router

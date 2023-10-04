@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title><%= title %> | Page</title>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+        <!-- <script src="js/ace/theme-monokai.js"></script> -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <style type="text/css" media="screen">
+          #editor {
+            width: 98%;
+            height: 40rem;
+          }
+      </style>
+    </head>
+    <body>
+        <%- include('./partials/navbar.ejs') %>
+        <div class="row">
+            <div class="col-3">
+                <div class="dropdown">
+                    
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card" style="width: 18rem;">
+                    <img src="<%= qrCodeData %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product[0]['name'] %></h5>
+                        <p class="card-text">Price : <%= product[0]['price']%>, <%= product[0]['currency']%></p>
+                        <small>Category: <%= product[0]['category'] %></small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%- include('./partials/footer.ejs') %>
+
+    </body>
+</html>
