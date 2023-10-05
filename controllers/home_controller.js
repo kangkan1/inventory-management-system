@@ -16,8 +16,7 @@ module.exports.home = function(req, res){
       }
       return res.render('home', {title: "Home", 'categories':rows})
     });
-  });
-    
+  }); 
 }
 
 module.exports.search = function(req, res){
@@ -91,6 +90,12 @@ module.exports.product = function(req, res){
       }
     });
   });
+}
+
+module.exports.add = function(req, res){
+  //return res.end('<h1>Running</h1>');
+  console.log("here add")
+  return res.render('add', {title: "Add New Product"})
   
   
 }
