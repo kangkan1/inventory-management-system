@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title><%= title %> | Page</title>
+        <title><%= title %> | Inventory</title>
         <script src="js/bootstrap.js"></script>
         <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
         <!-- <script src="js/ace/theme-monokai.js"></script> -->
@@ -19,11 +19,11 @@
             <div class="col-3">
                 <div class="dropdown">
                     <button class="btn btn-light dropdown-toggle col-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Menu
+                      Categories
                     </button>
                     <ul class="dropdown-menu col-12">
                       <%  for(let i=0;i<categories.length; i++){ %>
-                        <li class="col-12"><button class="dropdown-item" type="button"><%= categories[i]['category'] %></button></li>
+                        <li class="col-12"><a class="dropdown-item" type="button" href="/category?category=<%= categories[i]['category']%>"><%= categories[i]['category'] %></a></li>
                       <%  } %>
                     </ul>
                 </div>
