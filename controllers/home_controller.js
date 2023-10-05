@@ -95,7 +95,19 @@ module.exports.product = function(req, res){
 module.exports.add = function(req, res){
   //return res.end('<h1>Running</h1>');
   console.log("here add")
-  return res.render('add', {title: "Add New Product"})
+  // return res.render('add', {title: "Add New Product"})
+  db.serialize(() => {
+    db.all(`SELECT DISTINCT(name) FROM category where status ="ACTIVE" limit 50`, (err, rows) => {
+      if(err){
+        return res.render('error')
+      }else{
+        console.log(rows)
+        return res.render('add', {title: "Add New Product", category:rows})
+
+        
+      }
+    });
+  });
   
   
 }

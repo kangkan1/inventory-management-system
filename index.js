@@ -23,7 +23,7 @@ app.listen(port, function(err){
 
 /*
 CREATE TABLE product (
-	  id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
     name text(512) NOT NULL,
     sku text(1028),
     quantity INTEGER NOT NULL,
@@ -41,4 +41,21 @@ CREATE TABLE product (
     insert into product (id, name, sku, quantity, price, currency, category) values (4, "Kitchen Stand, 5 layer kitchen stand (Steel) for Home","RCK001",7, 999,"INR", "Rack");
 
     update product set category = "Pool Table";
+
+
+CREATE TABLE category (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name text(512) NOT NULL,
+    status text(10) DEFAULT "INACTIVE"
+);
+
+insert into category (name, status) values ("Pool Table", "ACTIVE");
+insert into category (name, status) values ("Table", "ACTIVE");
+insert into category (name, status) values ("Rack", "ACTIVE");
+insert into category (name, status) values ("Kitchen Appliances", "ACTIVE");
+insert into category (name, status) values ("Home Appliances", "ACTIVE");
+insert into category (name, status) values ("Bed", "ACTIVE");
+insert into category (name, status) values ("Chair", "ACTIVE");
+insert into category (name, status) values ("Outdoor Appliances", "ACTIVE");
+insert into category (name, status) values ("Other", "ACTIVE");
 */

@@ -15,7 +15,62 @@
     </head>
     <body>
         <%- include('./partials/navbar.ejs') %>
-        <h2>Add product Page</h2>
+          <div class="row my-2 d-flex justify-content-center">
+            <div class="card col-6">
+              <div class="card-header">
+                Add a New Product
+              </div>
+              <div class="card-body">
+                <div class="col-12">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Product Name</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="product_name" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">SKU</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="sku" />
+                  </div>
+                
+                  <div class="row mb-3">
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="price">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="input-group">
+                          <span class="input-group-text" id="inputGroup-sizing-default">Currency</span>
+                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="currency" />
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col-6">
+                      <div class="input-group">
+                        <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                        <select class="form-select" id="category">
+                          <option selected>Select Category</option>
+                          <% for(let i=0;i<category.length;i++) { %>
+                            <option value="<%= category[i]['name']%>"><%= category[i]['name']%></option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="input-group">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="quantity" />
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary">Add Product</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        
         <%- include('./partials/footer.ejs') %>
         
     </body>
