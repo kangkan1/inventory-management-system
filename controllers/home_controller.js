@@ -8,12 +8,13 @@ module.exports.home = function(req, res){
     console.log("here")
     
     db.serialize(() => {
-      db.all(`select distinct category from product limit 10`, (err, rows) => {
+      db.all(`select DISTINCT(name) as category from category where status ="ACTIVE" limit 50`, (err, rows) => {
       if (err) {
         console.log(err)
-        throw err;
+        // throw err;
         return res.render('home', {title: "Home", 'categories':[]})
       }
+      
       return res.render('home', {title: "Home", 'categories':rows})
     });
   }); 
@@ -46,22 +47,10 @@ module.exports.search = function(req, res){
             message: 'Data received successfully',
             results: out,
             'status':'success',
-            // 'results':[
-            //     {
-            //         'url':"#",
-            //         'text':"Some Data 1"
-            //     },
-            //     {
-            //         'url':"#",
-            //         'text':"Some Data 2"
-            //     }
-            // ]
+
         });
         });
       });
-    
-    // console.log("here")
-    // return res.render('home', {title: "Home"})
 }
 
 module.exports.product = function(req, res){
@@ -95,7 +84,41 @@ module.exports.product = function(req, res){
 module.exports.add = function(req, res){
   //return res.end('<h1>Running</h1>');
   console.log("here add")
-  return res.render('add', {title: "Add New Product"})
-  
+  // return res.render('add', {title: "Add New Product"})
+  db.serialize(() => {
+    db.all(`SELECT DISTINCT(name) FROM category where status ="ACTIVE" limit 50`, (err, rows) => {
+      if(err){
+        return res.render('error')
+      }else{
+        console.log(rows)
+        return res.render('add', {title: "Add New Product", category:rows})
+      }
+    });
+  });
+}
+
+module.exports.category = function(req, res){
+  //return res.end('<h1>Running</h1>');
+  const category = req.query.category;
+  console.log(category)
+  db.serialize(() => {
+    db.all(`SELECT * FROM product where category = "${category}" limit 50;`, (err, rows) => {
+      if(err){
+        return res.render('error')
+      }else{
+        
+        // res.json({
+        //   'message':"ok",
+        //   'product':rows
+        // })
+        let arr = []
+        for(let i=0;i<rows.length;i++){
+
+        }
+        return res.render('category', {title: "Category | "+category, category:rows})
+        
+      }
+    });
+  });
   
 }
