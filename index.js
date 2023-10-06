@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port  = 3000
 
@@ -8,7 +9,9 @@ app.set('views', './views');
 app.use(express.json());
 
 // For URL encoded data
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use('/', require('./routes/index.js'))
 app.use(express.static('public'))

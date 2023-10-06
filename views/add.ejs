@@ -50,7 +50,7 @@
                     <div class="input-group">
                       <label class="input-group-text" for="inputGroupSelect01">Category</label>
                       <select class="form-select" id="category">
-                        <option selected>Select Category</option>
+                        <option selected value="">Select Category</option>
                         <% for(let i=0;i<category.length;i++) { %>
                           <option value="<%= category[i]['name']%>"><%= category[i]['name']%></option>
                         <% } %>
@@ -79,10 +79,86 @@
           let currency = document.getElementById('currency');
           let category = document.getElementById('category');
           let quantity = document.getElementById('quantity');
+
+          function validateInput(){
+            if(product_name.value.length<5){
+              return {
+                'status':false,
+                'message':"Product Name cannot be blank and should be atleast 5 character"
+              };
+            }
+            if(sku.value.length<1){
+              return {
+                'status':false,
+                'message':"SKU cannot be blank and should be atleast 5 character"
+              };
+            }
+            var number_pattern = /^\d+\.\d{0,2}$/;
+            let p = price.value
+            if(!number_pattern.test(p)){
+              return {
+                'status':false,
+                'message':"Price should be number with upto 2 decimal"
+              };
+            }
+            if(currency.value.length < 1){
+              return {
+                'status':false,
+                'message':"Currency cannot be empty"
+              };
+            }
+            // console.log(category.options[category.selectedIndex].value)
+            if(category.value.length < 1){
+              return {
+                'status':false,
+                'message':"Please select a Category"
+              };
+            }
+            let qty = quantity.value;
+
+            number_pattern = /^\d+$/;
+            // console.log(qty)
+            if(!number_pattern.test(qty)){
+              return {
+                'status':false,
+                'message':"Quntity has to be an integer"
+              };
+            }
+
+
+            // everything is right
+            return {
+                'status':true,
+                'message':"Ok"
+              };
+          }
           add_product_button.addEventListener('click', function(){
-            console.log("click");
+            // console.log("click");
             let name = product_name.value;
-            console.log(name)
+            // console.log(name)
+            let valid = validateInput();
+            if(valid['status']){
+              
+              let url = "/create";
+              const data = {
+                  key1: "value1",
+                  key2: "value2"
+              }; // Data you want to send to the server
+              const xhr = new XMLHttpRequest();
+              xhr.open("POST", url, true);
+              xhr.setRequestHeader("Content-Type", "application/json"); // Set content type to JSON
+              xhr.onreadystatechange = function () {
+                  if (xhr.readyState === 4 && xhr.status === 200) {
+                      const response = JSON.parse(xhr.responseText);
+                      console.log(response);
+                  }
+              };
+              xhr.send(JSON.stringify(data));
+            }else{
+                alert(valid['message'])
+                return
+            }
+            
           })
           sku.addEventListener('keyup', function(e){
             console.log(e.target.value)

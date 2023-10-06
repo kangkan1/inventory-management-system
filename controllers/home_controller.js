@@ -47,7 +47,6 @@ module.exports.search = function(req, res){
             message: 'Data received successfully',
             results: out,
             'status':'success',
-
         });
         });
       });
@@ -62,6 +61,7 @@ module.exports.product = function(req, res){
     db.all(`SELECT * FROM product where id=${id} limit 1;`, (err, rows) => {
       if(err){
         return res.render('error')
+        throw err;
       }else{
         if(rows.length <1){
           return res.render('error')
@@ -69,9 +69,6 @@ module.exports.product = function(req, res){
         let data = 'SKU:'+rows[0]['sku']+", Name: "+rows[0]['name']+", Created at: "+rows[0]['created_at'];
         qrCode.toDataURL(data, (err, url) => {
           if (err) throw err;
-  
-          // Render EJS template with QR code data
-          // res.render('index', {  });
           return res.render('product', {title:"Product", product:rows, qrCodeData: url})
       });
 
@@ -119,6 +116,19 @@ module.exports.category = function(req, res){
         
       }
     });
+  });
+  
+}
+
+module.exports.create = function(req, res){
+  //return res.end('<h1>Running</h1>');
+  console.log("here create")
+  console.log(req.body)
+  console.log(req)
+  // return res.render('add', {title: "Add New Product"})
+  res.json({
+    message: 'Data received successfully',
+    'status':'success'
   });
   
 }

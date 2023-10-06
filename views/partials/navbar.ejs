@@ -199,7 +199,6 @@
   // if user press any key and release
   inputBox.onkeyup = (e)=>{
       let userData = e.target.value; //user enetered data
-      console.log("user data:"+userData)
       let emptyArray = [];
       if(userData.length <2){
           emptyArray.push("<a href=\"#\">Please type at least two character</a>");

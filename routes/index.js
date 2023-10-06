@@ -11,6 +11,7 @@ router.post('/search', homeController.search)
 router.get('/product', homeController.product)
 router.get('/add', homeController.add)
 router.get('/category', homeController.category)
+router.post('/create', homeController.create)
 // router.post('/create', homeController.create)
 // router.use('/users', require('./users'))
 
