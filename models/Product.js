@@ -1,30 +1,62 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-const port  = 3000
+const { Sequelize,DataTypes } = require('sequelize');
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './db/db.sqlite'
+  });
+  
+  
+//   async function checkDatabaseConnection() {
+//     try {
+//       await sequelize.authenticate();
+//       console.log('Connection has been established successfully.');
+//       // Perform synchronous operations after successful connection here
+//     } catch (error) {
+//       console.error('Unable to connect to the database:', error);
+//       // Handle error and perform synchronous operations accordingly
+//     }
+//   }
+  
+//   checkDatabaseConnection();
 
-app.set('view engine', 'ejs');
-app.set('views', './views');
-
-app.use(express.json());
-
-// For URL encoded data
-// app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use('/', require('./routes/index.js'))
-app.use(express.static('public'))
-
-app.listen(port, function(err){
-    if(err){
-        console.log(`Error in running the server: ${err}`)
+const Product = sequelize.define('products', {
+    id: {
+        type: Sequelize.NUMBER,
+        primaryKey: true
+    },
+    name:{
+        type: Sequelize.STRING(512),
+        allowNull: false
+    },
+    sku:{
+        type: Sequelize.STRING(128)
+    },
+    quantity:{
+        type: Sequelize.NUMBER,
+        allowNull: false
+    },
+    price:{
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false
+    },
+    created_by:{
+        type: Sequelize.NUMBER
+    },
+    created_at:{
+        type: Sequelize.DATE
+    },
+    currency:{
+        type: Sequelize.STRING(10),
+        allowNull: false
+    },
+    category:{
+        type: Sequelize.STRING(50),
+        allowNull: false
     }
-    console.log(`Server is running in port: ${port}`)
-})
+    
+},{ timestamps: false })
 
-
-/*
+module.exports = Product;
+  /*
 CREATE TABLE product (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
     name text(512) NOT NULL,
@@ -61,7 +93,4 @@ insert into category (name, status) values ("Bed", "ACTIVE");
 insert into category (name, status) values ("Chair", "ACTIVE");
 insert into category (name, status) values ("Outdoor Appliances", "ACTIVE");
 insert into category (name, status) values ("Other", "ACTIVE");
-
-ALTER TABLE product RENAME TO products;
-
 */
